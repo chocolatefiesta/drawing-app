@@ -18,7 +18,7 @@ var app = new Vue({
 			name: '',
 			saveItems: []
 		},
-		size: 12,
+		size: 24,
 		colors: [
 			'#d4f713',
 			'#13f7ab',
@@ -92,7 +92,7 @@ var app = new Vue({
 					history: app.history.slice(),
 					name: app.save.name
 				};
-
+				
 				app.save.saveItems.push(historyItem);
 				app.save.name = "";
 			}
@@ -100,6 +100,16 @@ var app = new Vue({
 		loadSave: (item)=>{
 			app.history = item.history.slice();
 			draw.redraw();
+		},
+		removeColorAndRadius: (item)=>{
+			delete item.c;
+			delete item.r;
+			return item;
+		},
+		sendToPrint: ()=>{
+			firebase.database().ref('drawings').push({
+				// dots: Array.from(app.history, x => app.removeColorAndRadius(x))
+			});
 		}
 	}
 });
