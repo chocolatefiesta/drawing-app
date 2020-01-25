@@ -51,42 +51,8 @@
 				<div class="btn-row">
 
 					<div class="btn-row">
-						<div class="btn-print" title="Print" v-on:click="popups.showSave = !popups.showSave">
-							Print your design
-						</div>
-					</div>
-
-					<div class="popup" v-if="popups.showSave">
-						<div class="popup-title">
-							Save your drawing
-						</div>
-						<div class="form">
-							<input type="text" placeholder="Save name" v-model="save.name">
-							<div v-if="save.name.length < 3" class="text-faded">
-								<i>
-									Min 3 characters
-								</i>
-							</div>
-							<span class="btn" v-on:click="saveItem">
-								Save as
-								<span class="text-faded">
-									{{ save.name }}
-								</span>
-							</span>
-							<span class="btn" v-on:click="sendToPrint">
-								Print
-							</span>
-						</div>
-
-						<div class="saves" v-if="save.saveItems.length">
-							<div class="popup-title">
-								Load a save
-							</div>
-
-							<div class="save-item" v-for="item in save.saveItems">
-								<h3>{{ item.name }}</h3>
-								<span class="btn" v-on:click="loadSave(item)">load</span>
-							</div>
+						<div class="btn-print" title="Print" v-on:click="saveItem">
+							Print!
 						</div>
 					</div>
 

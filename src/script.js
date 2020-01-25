@@ -87,15 +87,19 @@ var app = new Vue({
 			return b;
 		},
 		saveItem: ()=>{
-			if(app.save.name.length > 2){
-				var historyItem = {
-					history: app.history.slice(),
-					name: app.save.name
-				};
-				
-				app.save.saveItems.push(historyItem);
-				app.save.name = "";
-			}
+		
+			var historyItem = {
+				history: app.history.slice(),
+				name: app.save.name
+			};
+			
+			app.save.saveItems.push(historyItem);
+			app.save.name = "";
+			drawing = app.history.slice();
+			firebase.database().ref('drawings/drawing').set(
+				Array.from(drawing, x => app.removeColorAndRadius(x))
+			);
+			
 		},
 		loadSave: (item)=>{
 			app.history = item.history.slice();
