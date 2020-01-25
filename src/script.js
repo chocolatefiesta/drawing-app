@@ -107,9 +107,10 @@ var app = new Vue({
 			return item;
 		},
 		sendToPrint: ()=>{
-			firebase.database().ref('drawings').push({
-				// dots: Array.from(app.history, x => app.removeColorAndRadius(x))
-			});
+			drawing = app.history.slice();
+			firebase.database().ref('drawings/drawing').set(
+				Array.from(drawing, x => app.removeColorAndRadius(x))
+			);
 		}
 	}
 });
