@@ -148,8 +148,6 @@ class Draw {
 				c: app.color,
 				r: app.size
 			};
-			console.log('DRAW')
-			console.log(this.mouseX)
 			app.history.push(item);
 			this.draw(item, app.history.length);
 		}
@@ -212,8 +210,8 @@ class Draw {
 			this.mouseY = e.offsetY;
         }
         else if (e.layerX) {
-            this.mouseX = e.layerX;
-			this.mouseY = e.layerY;
+            this.mouseX = e.touches[0].clientX;
+			this.mouseY = e.touches[0].clientY;
 		}
 	}
 	
@@ -222,9 +220,9 @@ class Draw {
             var x = e.offsetX;
             var y = e.offsetY;
         }
-        else if (e.layerX) {
-            var x = e.layerX;
-            var y = e.layerY;
+        else if (e.touches[0]) {
+            var x = e.touches[0].clientX;
+            var y = e.touches[0].clientY;
 		}
 		
 		var cursor = document.getElementById('cursor');
