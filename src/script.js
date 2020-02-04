@@ -198,22 +198,22 @@ class Draw {
 
 		this.c.addEventListener('touchstart', (e)=>{
 			this.mouseDownEvent(e);
-			if (e.target == canvas) {
+			if (e.target == this.c) {
 				e.preventDefault();
 			}
 		});
 		this.c.addEventListener('touchend', ()=>{
-			if (e.target == canvas) {
+			if (e.target == this.c) {
 				e.preventDefault();
 			}
 		});
 		this.c.addEventListener('touchcancel', ()=>{
-			if (e.target == canvas) {
+			if (e.target == this.c) {
 				e.preventDefault();
 			}
 		});
 		this.c.addEventListener('touchmove', (e)=>{
-			if (e.target == canvas) {
+			if (e.target == this.c) {
 				e.preventDefault();
 			}
 		});
