@@ -169,53 +169,40 @@ class Draw {
 		this.c.addEventListener('mousedown', (e)=>{
 			this.mouseDownEvent(e);
 		});
-		this.c.addEventListener('touchstart', (e)=>{
-			this.mouseDownEvent(e);
-		});
-		
 		this.c.addEventListener('mouseup', ()=>{
 			this.mouseUpEvent()
 		});
-		this.c.addEventListener('touchend', ()=>{
-			this.mouseUpEvent()
-		});
-		
 		this.c.addEventListener('mouseleave', ()=>{
 			this.mouseUpEvent()
 		});
-		this.c.addEventListener('touchcancel', ()=>{
-			this.mouseUpEvent()
-		});
-		
 		this.c.addEventListener('mousemove', (e)=>{
 			this.mouseMoveEvent(e)
 		});
-		this.c.addEventListener('touchmove', (e)=>{
-			this.mouseMoveEvent(e)
-		});
-		
 
 
 		this.c.addEventListener('touchstart', (e)=>{
-			this.mouseDownEvent(e);
 			if (e.target == this.c) {
 				e.preventDefault();
-			}
+			};
+			this.mouseDownEvent(e);
 		});
 		this.c.addEventListener('touchend', ()=>{
 			if (e.target == this.c) {
 				e.preventDefault();
-			}
+			};
+			this.mouseUpEvent();
 		});
 		this.c.addEventListener('touchcancel', ()=>{
 			if (e.target == this.c) {
 				e.preventDefault();
-			}
+			};
+			this.mouseUpEvent();
 		});
 		this.c.addEventListener('touchmove', (e)=>{
 			if (e.target == this.c) {
 				e.preventDefault();
-			}
+			};
+			this.mouseMoveEvent(e);
 		});
 
 		window.addEventListener('resize', ()=>{
