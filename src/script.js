@@ -6,7 +6,7 @@ var app = new Vue({
 		popups: {
 			showColor: false,
 			showSize: false,
-			showWelcome: true,
+			showWelcome: false,
 			showSave: false,
 			showOptions: false
 		},
@@ -95,27 +95,14 @@ var app = new Vue({
 			
 			app.save.saveItems.push(historyItem);
 			app.save.name = "";
-			drawing = app.history.slice();
 			firebase.database().ref('drawings/drawing').set(
-				Array.from(drawing, x => app.removeColorAndRadius(x))
-			);
-			
+				Array.from(app.history.slice(), x => ({'x': x.x, 'y': x.y, 'isDummy': x.isDummy}))
+			);			
 		},
 		loadSave: (item)=>{
 			app.history = item.history.slice();
 			draw.redraw();
 		},
-		removeColorAndRadius: (item)=>{
-			delete item.c;
-			delete item.r;
-			return item;
-		},
-		sendToPrint: ()=>{
-			drawing = app.history.slice();
-			firebase.database().ref('drawings/drawing').set(
-				Array.from(drawing, x => app.removeColorAndRadius(x))
-			);
-		}
 	}
 });
 
@@ -137,54 +124,74 @@ class Draw {
 		this.redraw();
 	}
 	
+	mouseDownEvent(e){
+		this.mouseDown = true;
+		this.mouseX = e.offsetX;
+		this.mouseY = e.offsetY;
+		this.setDummyPoint();
+	}
+
+	mouseUpEvent(){
+		if(this.mouseDown){
+			this.setDummyPoint();
+		}
+		this.mouseDown = false;
+	}
+
+	mouseMoveEvent(e){
+		this.moveMouse(e);
+		if(this.mouseDown){
+			this.mouseX = this.mouseX;
+			this.mouseY = this.mouseY;
+			
+			if(!app.options.restrictX){
+				this.mouseX = e.offsetX;
+			}
+			
+			if(!app.options.restrictY){
+				this.mouseY = e.offsetY;
+			}
+							
+			var item = {
+				isDummy: false,
+				x: this.mouseX,
+				y: this.mouseY,
+				c: app.color,
+				r: app.size
+			};
+			
+			app.history.push(item);
+			this.draw(item, app.history.length);
+		}
+	}
+
 	listen(){
 		this.c.addEventListener('mousedown', (e)=>{
-			this.mouseDown = true;
-			this.mouseX = e.offsetX;
-			this.mouseY = e.offsetY;
-			this.setDummyPoint();
+			this.mouseDownEvent(e);
+		});
+		this.c.addEventListener('touchstart', (e)=>{
+			this.mouseDownEvent(e);
 		});
 		
 		this.c.addEventListener('mouseup', ()=>{
-			if(this.mouseDown){
-				this.setDummyPoint();
-			}
-			this.mouseDown = false;
+			this.mouseUpEvent()
+		});
+		this.c.addEventListener('touchend', ()=>{
+			this.mouseUpEvent()
 		});
 		
 		this.c.addEventListener('mouseleave', ()=>{
-			if(this.mouseDown){
-				this.setDummyPoint();
-			}
-			this.mouseDown = false;
+			this.mouseUpEvent()
+		});
+		this.c.addEventListener('touchcancel', ()=>{
+			this.mouseUpEvent()
 		});
 		
 		this.c.addEventListener('mousemove', (e)=>{
-			this.moveMouse(e);
-			
-			if(this.mouseDown){
-				this.mouseX = this.mouseX;
-				this.mouseY = this.mouseY;
-				
-				if(!app.options.restrictX){
-					this.mouseX = e.offsetX;
-				}
-				
-				if(!app.options.restrictY){
-					this.mouseY = e.offsetY;
-				}
-								
-				var item = {
-					isDummy: false,
-					x: this.mouseX,
-					y: this.mouseY,
-					c: app.color,
-					r: app.size
-				};
-				
-				app.history.push(item);
-				this.draw(item, app.history.length);
-			}
+			this.mouseMoveEvent(e)
+		});
+		this.c.addEventListener('touchmove', (e)=>{
+			this.mouseMoveEvent(e)
 		});
 		
 		window.addEventListener('resize', ()=>{
