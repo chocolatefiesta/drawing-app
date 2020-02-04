@@ -194,6 +194,30 @@ class Draw {
 			this.mouseMoveEvent(e)
 		});
 		
+
+
+		this.c.addEventListener('touchstart', (e)=>{
+			this.mouseDownEvent(e);
+			if (e.target == canvas) {
+				e.preventDefault();
+			}
+		});
+		this.c.addEventListener('touchend', ()=>{
+			if (e.target == canvas) {
+				e.preventDefault();
+			}
+		});
+		this.c.addEventListener('touchcancel', ()=>{
+			if (e.target == canvas) {
+				e.preventDefault();
+			}
+		});
+		this.c.addEventListener('touchmove', (e)=>{
+			if (e.target == canvas) {
+				e.preventDefault();
+			}
+		});
+
 		window.addEventListener('resize', ()=>{
 			this.setSize();
 			this.redraw();
