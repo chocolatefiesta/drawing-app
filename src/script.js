@@ -174,7 +174,7 @@ class Draw {
 			};
 			this.mouseDownEvent(e);
 		});
-		this.c.addEventListener('touchend', ()=>{
+		this.c.addEventListener('touchend', (e)=>{
 			if (e.target == this.c) {
 				e.preventDefault();
 			};
@@ -209,7 +209,7 @@ class Draw {
             this.mouseX = e.offsetX;
 			this.mouseY = e.offsetY;
         }
-        else if (e.layerX) {
+        else if (e.touches[0].clientX) {
             this.mouseX = e.touches[0].clientX;
 			this.mouseY = e.touches[0].clientY;
 		}
@@ -220,7 +220,7 @@ class Draw {
             var x = e.offsetX;
             var y = e.offsetY;
         }
-        else if (e.touches[0]) {
+        else if (e.touches[0].clientX) {
             var x = e.touches[0].clientX;
             var y = e.touches[0].clientY;
 		}
