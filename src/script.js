@@ -200,8 +200,9 @@ class Draw {
 	}
 	
 	setSize(){
-		this.c.width = window.innerWidth;
-		this.c.height = window.innerHeight - 60;
+		let min_size = Math.min(window.innerWidth, window.innerHeight)
+		this.c.width = this.c.offsetWidth;
+		this.c.height = this.c.offsetHeight;
 	}
 
 	getCursorPosition(e){
@@ -210,8 +211,8 @@ class Draw {
 			this.mouseY = e.offsetY;
         }
         else if (e.touches[0].clientX) {
-            this.mouseX = e.touches[0].clientX;
-			this.mouseY = e.touches[0].clientY;
+            this.mouseX = e.touches[0].clientX - this.c.offsetLeft;
+			this.mouseY = e.touches[0].clientY - this.c.offsetTop;
 		}
 	}
 	
@@ -227,7 +228,7 @@ class Draw {
 		
 		var cursor = document.getElementById('cursor');
 		
-		cursor.style.transform = `translate(${x - 10}px, ${y - 10}px)`;
+		cursor.style.transform = `translate(${x + this.c.offsetLeft}px, ${y + this.c.offsetTop}px)`;
 	}
 	
 	getDummyItem(){
@@ -279,7 +280,7 @@ class Draw {
 	
 	draw(item, i){
 		this.ctx.lineCap = 'round';
-		this.ctx.lineJoin="round";
+		this.ctx.lineJoin = "round";
 		
 		var prevItem = app.history[i-2];
 				

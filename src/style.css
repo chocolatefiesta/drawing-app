@@ -1,13 +1,25 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
 * {
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
+}
+
+html {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
 body {
   background-color: black;
   color: white;
+  margin: auto auto;
+
+  display: table-cell;
+  vertical-align: middle;
 }
 
 body, button, input {
@@ -40,11 +52,25 @@ h1, h2, h3, h4, h5 {
   mix-blend-mode: difference;
   opacity: 0;
   transition: opacity 1s;
+} 
+
+
+#draw {
+  width: min(100vw, 100vh);
+  height: min(100vw, 100vh);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 canvas {
-  width: 100%;
-  height: calc(100vh - 60px);
+  width: min(calc(100vw), calc(100vh - 60px));
+  height: min(calc(100vw), calc(100vh - 60px));
+  margin-left: auto;
+  margin-right: auto;
+  display: table-cell;
+  vertical-align: middle;
+  /* width: 100%;
+  height: calc(100vh - 60px); */
   background-color: white;
   cursor: none;
 }
@@ -60,9 +86,7 @@ canvas:active+.cursor {
 .controls {
   position: fixed;
   z-index: 5;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  width: min(100vw, calc(100vh - 60px));
   height: 60px;
   background-color: #0a0a0a;
   display: flex;
