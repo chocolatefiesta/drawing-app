@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  background-color: black;
+  background-color: rgb(214, 104, 0);
   color: white;
   margin: auto auto;
 
@@ -63,14 +63,12 @@ h1, h2, h3, h4, h5 {
 }
 
 canvas {
-  width: min(calc(100vw), calc(100vh - 60px));
-  height: min(calc(100vw), calc(100vh - 60px));
+  width: min(calc(100vw), calc(100vh - 100px));
+  height: min(calc(100vw), calc(100vh - 100px));
   margin-left: auto;
   margin-right: auto;
   display: table-cell;
   vertical-align: middle;
-  /* width: 100%;
-  height: calc(100vh - 60px); */
   background-color: white;
   cursor: none;
 }
@@ -86,9 +84,8 @@ canvas:active+.cursor {
 .controls {
   position: fixed;
   z-index: 5;
-  width: min(100vw, calc(100vh - 60px));
-  height: 60px;
-  background-color: #0a0a0a;
+  width: min(100vw, 100vh);
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,6 +93,7 @@ canvas:active+.cursor {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
 }
 
 .stat {
@@ -241,17 +239,16 @@ canvas:active+.cursor {
   display: inline-block;
   margin-top: 6px;
   padding: 6px 12px;
-  font-weight: 300;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 40px;
   border-radius: 4px;
-  background-color: #0095ff;
+  background-color: #3f3f3f;
   color: white;
   -webkit-animation-delay: 1s;
   animation-delay: 1s;
   transition: all .15s;
   cursor: pointer;
 }
-
 
 .btn:hover {
   background-color: #33aaff;
@@ -351,12 +348,12 @@ button {
   border: 0;
   border-radius: 0;
   box-shadow: 0;
-  width: 40px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   display: inline-block;
   background-color: transparent;
-  color: #8c8c8c;
-  font-size: 22px;
+  color: #535353;
+  font-size: 50px;
   transition: all .15s;
   cursor: pointer;
   outline: 0;
@@ -370,13 +367,13 @@ button .size-icon, button .color-icon {
 }
 
 button .color-icon {
-  width: 5px;
-  height: 5px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
 }
 
 button .size-icon {
-  font-size: 6px;
+  font-size: 20px;
   text-align: right;
 }
 
