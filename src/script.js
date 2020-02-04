@@ -140,9 +140,7 @@ class Draw {
 	mouseMoveEvent(e){
 		this.moveMouse(e);
 		if(this.mouseDown){
-			this.mouseX = this.mouseX;
-			this.mouseY = this.mouseY;
-										
+			this.getCursorPosition(e);		
 			var item = {
 				isDummy: false,
 				x: this.mouseX,
@@ -150,7 +148,8 @@ class Draw {
 				c: app.color,
 				r: app.size
 			};
-			
+			console.log('DRAW')
+			console.log(this.mouseX)
 			app.history.push(item);
 			this.draw(item, app.history.length);
 		}
@@ -210,23 +209,23 @@ class Draw {
 	getCursorPosition(e){
 		if (e.offsetX) {
             this.mouseX = e.offsetX;
-            this.mouseY = e.offsetY;
+			this.mouseY = e.offsetY;
         }
         else if (e.layerX) {
             this.mouseX = e.layerX;
-            this.mouseY = e.layerY;
-        }
+			this.mouseY = e.layerY;
+		}
 	}
 	
 	moveMouse(e){
 		if (e.offsetX) {
-            let x = e.offsetX;
-            let y = e.offsetY;
+            var x = e.offsetX;
+            var y = e.offsetY;
         }
         else if (e.layerX) {
-            let x = e.layerX;
-            let y = e.layerY;
-        }
+            var x = e.layerX;
+            var y = e.layerY;
+		}
 		
 		var cursor = document.getElementById('cursor');
 		
