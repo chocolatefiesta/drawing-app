@@ -228,7 +228,7 @@ class Draw {
 		
 		var cursor = document.getElementById('cursor');
 		
-		cursor.style.transform = `translate(${x + this.c.offsetLeft}px, ${y + this.c.offsetTop}px)`;
+		cursor.style.transform = `translate(${x + this.c.offsetLeft - 10}px, ${y + this.c.offsetTop - 10}px)`;
 	}
 	
 	getDummyItem(){
