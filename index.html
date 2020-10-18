@@ -14,15 +14,21 @@
 	<div id="draw">
 		<div class="welcome-bg" v-if="popups.showWelcome">
 			<div class="welcome">
-				<h1 class="fade-up">Draw&Print</h1>
-				<h2 class="fade-up">
-					by Chocolate Fiesta
-				</h2>
+				<h1 class="fade-up">Библиотека рисунков β</h1>
+				<div class="grid-container">
+
+						<div class="grid-model" v-for="item in modelLibrary">
+							<img :src="'./src/images/' + item.name + '.jpg'" class="model-image">
+							<p>{{ item.name }}</p>
+							<button class="btn-model-print fade-up" v-on:click="printFromModelLibrary(item)">Печать</button>
+						</div> 
+				</div>
 				<a href="https://chocolatefiesta.ru" target="blank" title="chocolatefiesta.ru"
 					class="fade-up">chocolatefiesta.ru</a>
 				<span class="btn fade-up" title="Close" v-on:click="popups.showWelcome = false">
-					Lets go
+					Рисовать
 				</span>
+
 			</div>
 		</div>
 		<div class="app-wrapper">
@@ -45,6 +51,10 @@
 									v-on:click="removeAllHistory"
 									v-bind:class="{ disabled: !history.length }" title="Clear all">
 						<i class="ion ion-trash-a"></i>
+					</button>
+					
+					<button type="button" v-on:click="popups.showWelcome = true" title="Библиотека">
+						<i class="ion ion-cube"></i>
 					</button>
 				</div>
 			

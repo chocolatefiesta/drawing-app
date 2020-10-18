@@ -200,6 +200,19 @@ canvas:active+.cursor {
   }
 }
 
+.print-success {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  background-color: #ffae00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .welcome-bg {
   position: fixed;
   top: 0;
@@ -235,6 +248,26 @@ canvas:active+.cursor {
 }
 
 
+.btn-model-print {
+  display: inline-block;
+  margin-top: 0px;
+  padding: 5px 5px;
+  font-weight: 400;
+  font-size: 16px;
+  border-radius: 4px;
+  width: 80px;
+  height: 40px;
+  background-color: #33aaff;
+  color: white;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+  transition: all .15s;
+  cursor: pointer;
+}
+.btn-model-print:hover {
+  background-color: #0095ff;
+}
+
 .btn-print {
   display: inline-block;
   margin-top: 6px;
@@ -255,12 +288,32 @@ canvas:active+.cursor {
 }
 
 .welcome {
-  width: 400px;
-  height: 400px;
+  width: 60%;
+  height: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . ."
+    ". . .";
+}
+.grid-model {
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.model-image {
+  width: 200px;
+  height: 200px;
 }
 
 .welcome h1.fade-up {
@@ -280,7 +333,7 @@ canvas:active+.cursor {
 .welcome a.fade-up {
   color: rgba(255, 255, 255, 0.5);
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 10px;
   text-decoration: none;
   -webkit-animation-delay: .75s;
   animation-delay: .75s;
